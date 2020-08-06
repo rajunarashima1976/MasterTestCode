@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <Reference Include="SampleAssocaiteCode">
-      <HintPath>..\..\SampleCSProject\SampleAssocaiteCode\bin\Release\netcoreapp3.1\SampleAssocaiteCode.dll</HintPath>
+      <HintPath>..\..\SampleAssocaiteCode\bin\Release\netcoreapp3.1\SampleAssocaiteCode.dll</HintPath>
     </Reference>
   </ItemGroup>
 

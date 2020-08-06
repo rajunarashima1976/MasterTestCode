@@ -6,7 +6,7 @@ using SampleAssocaiteCode.Controllers;
 using SampleAssocaiteCode.DemandService;
 using SampleAssocaiteCode.EntityModel;
 using SampleAssocaiteCode.Models;
-using SampleAssocaiteCode.UserService;
+//using SampleAssocaiteCode.UserService;
 using System;
 using System.Threading.Tasks;
 
@@ -15,70 +15,36 @@ namespace SampleMasterProjTest
     [TestFixture]
     public class DemandControllerTests
     {
-        private Mock<IUserService> _mockUserRepository;
+        private Mock<IDemandService> _mockDemandRepository;
         private Mock<IMapper> _mockMapperRepository;
-        private UsersController _controller;
+        private DemandController _controller;
+
         [SetUp]
         public void Setup()
         {
-            _mockUserRepository = new Mock<IUserService>();
+            _mockDemandRepository = new Mock<IDemandService>();
             _mockMapperRepository = new Mock<IMapper>();
-            _controller = new UsersController(_mockUserRepository.Object, _mockMapperRepository.Object);
+            _controller = new DemandController(_mockDemandRepository.Object, _mockMapperRepository.Object);
         }
 
-        [Test]
-        public async Task Authenticate_UserCredentialsIsCorrect_ReturnsToken()
-        {
-            _mockUserRepository.Setup(x => x.Authenticate("abc", "abc")).ReturnsAsync(new UserRolesDTO());
-            var result = await _controller.Authenticate(new UserDTO { Username = "abc", Password = "abc" });
 
-            // Assert
-            Assert.Pass();
-            var okObjectResult = result as OkObjectResult;
-            Assert.IsNotNull(okObjectResult);
-            Assert.Equals(new UserRolesDTO(), result);
-        }
+
+
 
         [Test]
-        public async Task Post_UserCredentialsIsNull_ReturnsBadRequest()
+        public async Task Post_IsDemandNull_ReturnsFalse()
         {
             // Act
-            _mockUserRepository.Setup(x => x.Authenticate("", "")).ReturnsAsync(new UserRolesDTO());
+            _mockDemandRepository.Setup(repo => repo.Post(null))
+              .ReturnsAsync(false);
+            var result = await _controller.Post(null);
 
-            var result = await _controller.Authenticate(new UserDTO());
-
-            // Assert
-            Assert.Pass();
-            var okObjectResult = result as OkObjectResult;
-            Assert.IsNotNull(okObjectResult);
-            //Assert.Equals(BadRequestResult, result);
-            Assert.IsInstanceOf<BadRequestResult>(result);
-
-        }
-
-        [Test]
-        public async Task GellAll_UserIsExist_ReturnsUserList()
-        {
-            // Act
-            var result = await _controller.GetAll();
 
             // Assert
             Assert.Pass();
             var okObjectResult = result as OkObjectResult;
             Assert.IsNotNull(okObjectResult);
-
-        }
-
-        [Test]
-        public async Task Gell_UserIsExit_ReturnsMatchedUser()
-        {
-            // Act
-            var result = await _controller.Get(4);
-
-            // Assert
-            Assert.Pass();
-            var okObjectResult = result as OkObjectResult;
-            Assert.IsNotNull(okObjectResult);
+            Assert.Equals(false, result);
 
         }
 
