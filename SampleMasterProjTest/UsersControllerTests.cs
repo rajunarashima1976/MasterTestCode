@@ -1,23 +1,24 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Text;
 using SampleAssocaiteCode.Controllers;
-using SampleAssocaiteCode.DemandService;
-using SampleAssocaiteCode.EntityModel;
-using SampleAssocaiteCode.Models;
 using SampleAssocaiteCode.UserService;
-using System;
+using SampleAssocaiteCode.EntityModel;
 using System.Threading.Tasks;
+using SampleAssocaiteCode.Models;
 
 namespace SampleMasterProjTest
 {
     [TestFixture]
-    public class DemandControllerTests
+    public class UsersControllerTests
     {
         private Mock<IUserService> _mockUserRepository;
         private Mock<IMapper> _mockMapperRepository;
         private UsersController _controller;
+
         [SetUp]
         public void Setup()
         {
@@ -81,6 +82,5 @@ namespace SampleMasterProjTest
             Assert.IsNotNull(okObjectResult);
 
         }
-
     }
 }
