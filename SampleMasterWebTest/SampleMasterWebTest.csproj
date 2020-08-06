@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <Reference Include="SampleCSWebProject">
-      <HintPath>..\..\SampleCSProject\SampleCSWebProject\bin\Release\netcoreapp3.1\SampleCSWebProject.dll</HintPath>
+      <HintPath>..\..\SampleCSProject\SampleCSWebProject\bin\Debug\netcoreapp3.1\SampleCSWebProject.dll</HintPath>
     </Reference>
   </ItemGroup>
 
